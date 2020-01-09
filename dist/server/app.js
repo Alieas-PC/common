@@ -43,7 +43,7 @@ class AppServer {
       )
       .use(
         // for convenience, mount logger object to ctx.
-        mount(this.logger)
+        mount({ logger: this.logger })
       )
       .use(
         // use ejs as default template engine.
@@ -61,11 +61,11 @@ class AppServer {
         // use koa session
         session(this.app)
       )
-      .use(memcache(this.app));
+      .use(memcache(this));
   }
 
   useRoutes(routesDir, prefix = '/api') {
-    loadRoutes(routesDir, prefix, this.app);
+    loadRoutes(routesDir, prefix, this);
   }
 
   useForward(prefix, forwardTo) {

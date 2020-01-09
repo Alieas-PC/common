@@ -61,13 +61,11 @@ class AppServer {
         // use koa session
         session(this.app)
       )
-      .use(memcache());
-
-    this.logger.info(`Server is listening at port ${this.servCfg.port}`);
+      .use(memcache(this.app));
   }
 
   useRoutes(routesDir, prefix = '/api') {
-    loadRoutes(routesDir, prefix);
+    loadRoutes(routesDir, prefix, this.app);
   }
 
   useForward(prefix, forwardTo) {
@@ -81,6 +79,8 @@ class AppServer {
   }
 
   listen(port = 3000) {
+    this.logger.info(`Server is listening at port ${port}`);
+
     this.app.listen(port);
   }
 }

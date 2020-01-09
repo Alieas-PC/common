@@ -1,14 +1,14 @@
-const logger = require('../log');
-
 /**
  * Simple map cache, not recommend for production use
  */
 
 class Cache {
-  constructor() {
+  constructor(logger) {
     this.cache = {};
 
     this.clearInvalidCache();
+
+    this.logger = logger;
   }
 
   get(key) {
@@ -17,20 +17,20 @@ class Cache {
     if (found) {
       found.active = new Date().getTime();
 
-      logger.info(
+      this.logger.info(
         `Found cache with key ${key}, and update active field to ${found.active}`
       );
 
       return found.value;
     }
 
-    logger.info(`Cannot found cache with key ${key}`);
+    this.logger.info(`Cannot found cache with key ${key}`);
 
     return null;
   }
 
   set(key, value, expires = 600000) {
-    logger.info(
+    this.logger.info(
       `Set new cache with key ${key} expires ${expires} value ${
         typeof value === 'object' ? JSON.stringify(value) : value
       }.`
@@ -50,21 +50,23 @@ class Cache {
 
         if (now - next.active >= next.expires) {
           delete this.cache[e];
-          logger.info(`delete expired cache with key => ${e}`);
+          this.logger.info(`delete expired cache with key => ${e}`);
         }
       }
     } catch (e) {
-      logger.info(`Clear cache error ${e.message}`);
+      this.logger.info(`Clear cache error ${e.message}`);
     } finally {
       setTimeout(this.clearInvalidCache.bind(this), 1000);
     }
   }
 }
 
-const cache = new Cache();
+module.exports = app => {
+  const cache = new Cache(app.logger);
 
-module.exports = () => async (ctx, next) => {
-  ctx.cache = cache;
+  return async (ctx, next) => {
+    ctx.cache = cache;
 
-  return next();
+    return next();
+  };
 };

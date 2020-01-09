@@ -1,9 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const Router = require('koa-router');
-const logger = require('./log');
 
-const loadRoutes = (dirPath, prefix) => {
+const loadRoutes = (dirPath, prefix, app) => {
   const router = new Router({ prefix });
 
   /** find routes under the same directory, then load it. */
@@ -12,7 +11,7 @@ const loadRoutes = (dirPath, prefix) => {
     files.forEach(file => {
       // skip index.js and hidden files which start with `.`.
       if (file.startsWith('.') || path.basename(__filename) === file) return;
-      logger.info(`Load router [${file}]`);
+      app.logger.info(`Load router [${file}]`);
 
       /* eslint-disable import/no-dynamic-require */
       /* eslint-disable global-require */

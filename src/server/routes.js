@@ -22,6 +22,9 @@ const loadRoutes = (dirPath, prefix, app) => {
       router.use(subRouter.allowedMethods());
     });
   });
+
+  app.use(router.routes());
+  app.use(router.allowedMethods());
 };
 
 module.exports = loadRoutes;

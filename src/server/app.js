@@ -14,9 +14,8 @@ const loadRoutes = require('./routes');
 const isPrd = !(process.env.NODE_ENV === 'development');
 
 class AppServer {
-  constructor({ keys = ['friday'], assetsDir, routesPrefix, projectRoot }) {
+  constructor({ keys = ['friday'], assetsDir, projectRoot }) {
     this.assetsDir = assetsDir;
-    this.routesPrefix = routesPrefix;
     this.projectRoot = projectRoot;
 
     this.app = new Koa();

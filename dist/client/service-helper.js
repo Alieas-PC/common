@@ -23,8 +23,6 @@ function callService(service, args, actionTypes) {
       onSuccess,
       _opts$onError,
       onError,
-      _opts$onFinal,
-      onFinal,
       loadingKey,
       resData,
       _args = arguments;
@@ -34,7 +32,7 @@ function callService(service, args, actionTypes) {
       switch (_context.prev = _context.next) {
         case 0:
           opts = _args.length > 3 && _args[3] !== undefined ? _args[3] : {};
-          _opts$onSuccess = opts.onSuccess, onSuccess = _opts$onSuccess === void 0 ? function () {} : _opts$onSuccess, _opts$onError = opts.onError, onError = _opts$onError === void 0 ? function () {} : _opts$onError, _opts$onFinal = opts.onFinal, onFinal = _opts$onFinal === void 0 ? function () {} : _opts$onFinal, loadingKey = opts.loadingKey;
+          _opts$onSuccess = opts.onSuccess, onSuccess = _opts$onSuccess === void 0 ? function () {} : _opts$onSuccess, _opts$onError = opts.onError, onError = _opts$onError === void 0 ? function () {} : _opts$onError, loadingKey = opts.loadingKey;
           resData = null;
 
           if (!loadingKey) {
@@ -95,17 +93,14 @@ function callService(service, args, actionTypes) {
           }));
 
         case 24:
-          return _context.delegateYield(onFinal(), "t3", 25);
-
-        case 25:
           return _context.finish(20);
 
-        case 26:
+        case 25:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[6, 15, 20, 26]]);
+  }, _marked, null, [[6, 15, 20, 25]]);
 }
 
 var _default = callService;

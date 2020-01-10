@@ -3,12 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { setLoadingState } from './action';
 
 function* callService(service, args, actionTypes, opts = {}) {
-  const {
-    onSuccess = () => {},
-    onError = () => {},
-    onFinal = () => {},
-    loadingKey
-  } = opts;
+  const { onSuccess = () => {}, onError = () => {}, loadingKey } = opts;
 
   let resData = null;
 
@@ -34,8 +29,6 @@ function* callService(service, args, actionTypes, opts = {}) {
     if (loadingKey) {
       yield put(setLoadingState({ loading: false, key: loadingKey }));
     }
-
-    yield* onFinal();
   }
 }
 

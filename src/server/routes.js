@@ -1,30 +1,23 @@
-const path = require('path');
-const fs = require('fs');
 const Router = require('koa-router');
 
-const loadRoutes = (dirPath, prefix, app) => {
+const { findModules } = require('./util');
+
+const loadRoutes = (dir, prefix, app) => {
   const router = new Router({ prefix });
-
-  /** find routes under the same directory, then load it. */
-  fs.readdir(dirPath, (err, files) => {
-    if (err) throw err;
-    files.forEach(file => {
-      // skip index.js and hidden files which start with `.`.
-      if (file.startsWith('.') || path.basename(__filename) === file) return;
-      app.logger.info(`Load router [${file}]`);
-
-      /* eslint-disable import/no-dynamic-require */
-      /* eslint-disable global-require */
-      const subRouter = require(path.resolve(dirPath, file));
-
-      router.use(subRouter.routes());
-
-      router.use(subRouter.allowedMethods());
-    });
-  });
+  app.apiRouter = router;
 
   app.use(router.routes());
   app.use(router.allowedMethods());
+
+  findModules(
+    dir,
+    subRouter => {
+      router.use(subRouter.routes());
+
+      router.use(subRouter.allowedMethods());
+    },
+    app
+  );
 };
 
 module.exports = loadRoutes;

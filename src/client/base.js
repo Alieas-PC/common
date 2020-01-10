@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { reduxForm, formValueSelector } from 'redux-form';
 import * as utils from './utils';
 import { i18n, withTranslation } from './components/i18n';
+import createModelAccess from './model';
 
 const proxyHook = (WrapperComponent, staticProps) =>
   class BASE_HOC extends WrapperComponent {
@@ -11,8 +12,8 @@ const proxyHook = (WrapperComponent, staticProps) =>
       super(props);
       // inject utilities from util/index.js to instances
       this.$utils = utils;
-      // for convenience
-      this.t = this.props.t;
+      // models access
+      this.model = createModelAccess(this);
     }
 
     setTitle = title => {

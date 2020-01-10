@@ -10,8 +10,8 @@ const mount = require('./middlewares/mount');
 const memcache = require('./middlewares/memcache');
 const forward = require('./middlewares/forward');
 const loadRoutes = require('./routes');
-
-const isPrd = !(process.env.NODE_ENV === 'development');
+const { loadModels } = require('./model');
+const { isPrd } = require('./util');
 
 class AppServer {
   constructor({ keys = ['friday'], assetsDir, projectRoot }) {
@@ -66,6 +66,10 @@ class AppServer {
 
   useRoutes(routesDir, prefix = '/api') {
     loadRoutes(routesDir, prefix, this);
+  }
+
+  useModels(modelsDir, dbCfg) {
+    loadModels(modelsDir, dbCfg, this);
   }
 
   useForward(prefix, forwardTo) {

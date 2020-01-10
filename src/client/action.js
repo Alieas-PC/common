@@ -1,4 +1,4 @@
-import { makeActionCreator } from './utils/reduxUtil';
+import { makeActionCreator, createRequestTypes } from './utils/reduxUtil';
 
 /** Contants */
 export const PREFIX = 'COMMON';
@@ -14,6 +14,23 @@ export const INIT_APP = `${PREFIX}_INIT_APP`;
 export const SET_COMMON_STATE = `${PREFIX}_SET_COMMON_STATE`;
 
 export const SET_LOADING_STATE = `${PREFIX}_SET_LOADING_STATE`;
+
+// model crud
+export const MODEL_CREATE = createRequestTypes(`${PREFIX}_MODEL_CREATE`);
+
+export const MODEL_DESTROY = createRequestTypes(`${PREFIX}_MODEL_DESTROY`);
+
+export const MODEL_UPDATE = createRequestTypes(`${PREFIX}_MODEL_UPDATE`);
+
+export const MODEL_FIND_PAGE = createRequestTypes(`${PREFIX}_MODEL_FIND_PAGE`);
+
+export const MODEL_FIND_ONE = createRequestTypes(`${PREFIX}_MODEL_FIND_ONE`);
+
+export const MODEL_FIND_BY_ID = createRequestTypes(
+  `${PREFIX}_MODEL_FIND_BY_ID`
+);
+
+export const MODEL_FIND_LIST = createRequestTypes(`${PREFIX}_MODEL_FIND_LIST`);
 
 /** Actions */
 
@@ -36,4 +53,24 @@ export const moduleStateActionCreator = (moduleName = 'UNKNOW') => {
     SET_MODULE_STATE,
     setModuleState: makeActionCreator(SET_MODULE_STATE)
   };
+};
+
+// model crud
+export const modelActionCreator = asyncActionTypes => (
+  modelName,
+  values,
+  opts
+) => ({
+  type: asyncActionTypes.REQUEST,
+  payload: { modelName, values, opts, asyncActionTypes }
+});
+
+export const modelActions = {
+  create: modelActionCreator(MODEL_CREATE),
+  destroy: modelActionCreator(MODEL_DESTROY),
+  update: modelActionCreator(MODEL_UPDATE),
+  findPage: modelActionCreator(MODEL_FIND_PAGE),
+  findOne: modelActionCreator(MODEL_FIND_ONE),
+  findById: modelActionCreator(MODEL_FIND_BY_ID),
+  findList: modelActionCreator(MODEL_FIND_LIST)
 };

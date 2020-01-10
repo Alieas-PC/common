@@ -1,0 +1,38 @@
+const Sequelize = require('sequelize');
+const { findModules } = require('../util');
+const createModelRouter = require('./modelRouter');
+const BaseModel = require('./base');
+
+module.exports = (dir, { username, password, database, host, pool }, app) => {
+  const sequelize = new Sequelize(database, username, password, {
+    host,
+    pool,
+    dialect: 'mysql',
+    operatorsAliases: false
+  });
+
+  const models = {};
+
+  findModules(dir, mod => {
+    const { name, model, routes } = mod(sequelize);
+
+    models[name] = new BaseModel({
+      model,
+      opts: {
+        logging: sql => {
+          app.logger.info(sql);
+        }
+      }
+    });
+
+    if (routes && routes.length) {
+      const modelRouter = createModelRouter(name, routes);
+      app.apiRouter.use(modelRouter.routes());
+      app.apiRouter.use(modelRouter.allowedMethods());
+    }
+  });
+
+  sequelize.sync();
+
+  app.logger.info('Sync to db...');
+};

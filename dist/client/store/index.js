@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.store = exports.createStore = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -17,7 +17,9 @@ var _action = require("../action");
 
 var _configure = _interopRequireDefault(require("./configure"));
 
-var _default = function _default(rootReducer, rootSaga, preloadedState, history) {
+var _store = null;
+
+var createStore = function createStore(rootReducer, rootSaga, preloadedState, history) {
   var store = (0, _configure["default"])(rootReducer, rootSaga, preloadedState, history);
 
   store.initApp = function (ctx) {
@@ -44,8 +46,10 @@ var _default = function _default(rootReducer, rootSaga, preloadedState, history)
       }
     }, _callee);
   }));
+  _store = store;
   return store;
 };
 
-exports["default"] = _default;
-module.exports = exports.default;
+exports.createStore = createStore;
+var store = _store;
+exports.store = store;

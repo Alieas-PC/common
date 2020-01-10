@@ -39,6 +39,8 @@ var utils = _interopRequireWildcard(require("./utils"));
 
 var _i18n = require("./components/i18n");
 
+var _model = _interopRequireDefault(require("./model"));
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -65,9 +67,9 @@ var proxyHook = function proxyHook(WrapperComponent, staticProps) {
       (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "listenLangChange", function (key) {
         _this.setTitle(_this.t(key));
       });
-      _this.$utils = utils; // for convenience
+      _this.$utils = utils; // models access
 
-      _this.t = _this.props.t;
+      _this.model = (0, _model["default"])((0, _assertThisInitialized2["default"])(_this));
       return _this;
     }
 

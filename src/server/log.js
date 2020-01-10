@@ -1,6 +1,7 @@
 const log4js = require('log4js');
 const delegate = require('delegates');
 const path = require('path');
+const { isPrd } = require('./util');
 
 module.exports = projectRoot => {
   const devConfig = {
@@ -52,7 +53,7 @@ module.exports = projectRoot => {
     }
   };
 
-  const config = process.env.NODE_ENV === 'development' ? devConfig : prdConfig;
+  const config = !isPrd ? devConfig : prdConfig;
 
   log4js.configure(config);
 

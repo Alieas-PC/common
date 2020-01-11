@@ -1,4 +1,4 @@
-import { callService } from '../service-helper';
+import callService from '../service-helper';
 import * as modelService from '../service';
 
 export function* create({

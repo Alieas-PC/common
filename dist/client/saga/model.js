@@ -17,7 +17,7 @@ exports.findList = findList;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
-var _serviceHelper = require("../service-helper");
+var _serviceHelper = _interopRequireDefault(require("../service-helper"));
 
 var modelService = _interopRequireWildcard(require("../service"));
 
@@ -51,7 +51,7 @@ function create(_ref) {
       switch (_context.prev = _context.next) {
         case 0:
           _ref$payload = _ref.payload, modelName = _ref$payload.modelName, values = _ref$payload.values, opts = _ref$payload.opts, asyncActionTypes = _ref$payload.asyncActionTypes;
-          return _context.delegateYield((0, _serviceHelper.callService)(modelService.create, {
+          return _context.delegateYield((0, _serviceHelper["default"])(modelService.create, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);
@@ -72,7 +72,7 @@ function update(_ref2) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _ref2$payload = _ref2.payload, modelName = _ref2$payload.modelName, values = _ref2$payload.values, opts = _ref2$payload.opts, asyncActionTypes = _ref2$payload.asyncActionTypes;
-          return _context2.delegateYield((0, _serviceHelper.callService)(modelService.update, {
+          return _context2.delegateYield((0, _serviceHelper["default"])(modelService.update, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);
@@ -93,7 +93,7 @@ function destroy(_ref3) {
       switch (_context3.prev = _context3.next) {
         case 0:
           _ref3$payload = _ref3.payload, modelName = _ref3$payload.modelName, values = _ref3$payload.values, opts = _ref3$payload.opts, asyncActionTypes = _ref3$payload.asyncActionTypes;
-          return _context3.delegateYield((0, _serviceHelper.callService)(modelService.destroy, {
+          return _context3.delegateYield((0, _serviceHelper["default"])(modelService.destroy, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);
@@ -114,7 +114,7 @@ function findPage(_ref4) {
       switch (_context4.prev = _context4.next) {
         case 0:
           _ref4$payload = _ref4.payload, modelName = _ref4$payload.modelName, values = _ref4$payload.values, opts = _ref4$payload.opts, asyncActionTypes = _ref4$payload.asyncActionTypes;
-          return _context4.delegateYield((0, _serviceHelper.callService)(modelService.findPage, {
+          return _context4.delegateYield((0, _serviceHelper["default"])(modelService.findPage, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);
@@ -135,7 +135,7 @@ function findOne(_ref5) {
       switch (_context5.prev = _context5.next) {
         case 0:
           _ref5$payload = _ref5.payload, modelName = _ref5$payload.modelName, values = _ref5$payload.values, opts = _ref5$payload.opts, asyncActionTypes = _ref5$payload.asyncActionTypes;
-          return _context5.delegateYield((0, _serviceHelper.callService)(modelService.findOne, {
+          return _context5.delegateYield((0, _serviceHelper["default"])(modelService.findOne, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);
@@ -156,7 +156,7 @@ function findById(_ref6) {
       switch (_context6.prev = _context6.next) {
         case 0:
           _ref6$payload = _ref6.payload, modelName = _ref6$payload.modelName, values = _ref6$payload.values, opts = _ref6$payload.opts, asyncActionTypes = _ref6$payload.asyncActionTypes;
-          return _context6.delegateYield((0, _serviceHelper.callService)(modelService.findById, {
+          return _context6.delegateYield((0, _serviceHelper["default"])(modelService.findById, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);
@@ -177,7 +177,7 @@ function findList(_ref7) {
       switch (_context7.prev = _context7.next) {
         case 0:
           _ref7$payload = _ref7.payload, modelName = _ref7$payload.modelName, values = _ref7$payload.values, opts = _ref7$payload.opts, asyncActionTypes = _ref7$payload.asyncActionTypes;
-          return _context7.delegateYield((0, _serviceHelper.callService)(modelService.findList, {
+          return _context7.delegateYield((0, _serviceHelper["default"])(modelService.findList, {
             modelName: modelName,
             data: values
           }, asyncActionTypes, opts), "t0", 2);

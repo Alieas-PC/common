@@ -18,6 +18,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _default = function _default(context) {
+  var store = (0, _store.getStore)();
   var modelAccess = {};
   Object.keys(_action.modelActions).forEach(function (k) {
     modelAccess[k] = function () {
@@ -30,7 +31,7 @@ var _default = function _default(context) {
         onError: context.onError ? context.onError : null
       });
 
-      _store.store.dispatch(_action.modelActions[k](setPayload));
+      store.dispatch(_action.modelActions[k](setPayload));
     };
   });
   return modelAccess;

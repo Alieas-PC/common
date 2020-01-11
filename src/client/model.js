@@ -1,8 +1,10 @@
 import { modelActions } from './action';
 
-import { store } from './store';
+import { getStore } from './store';
 
 export default context => {
+  const store = getStore();
+
   const modelAccess = {};
 
   Object.keys(modelActions).forEach(k => {

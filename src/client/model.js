@@ -11,9 +11,13 @@ export default context => {
     modelAccess[k] = (modelName, values) => {
       store.dispatch(
         modelActions[k](modelName, values, {
-          onSuccess: context.onSuccess ? context.onSuccess : null,
+          onSuccess: context.onSuccess
+            ? res => context.onSuccess(res, modelName)
+            : undefined,
 
-          onError: context.onError ? context.onError : null
+          onError: context.onError
+            ? (e, res) => context.onError(e, res, modelName)
+            : undefined
         })
       );
     };

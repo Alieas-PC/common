@@ -15,8 +15,12 @@ var _default = function _default(context) {
   Object.keys(_action.modelActions).forEach(function (k) {
     modelAccess[k] = function (modelName, values) {
       store.dispatch(_action.modelActions[k](modelName, values, {
-        onSuccess: context.onSuccess ? context.onSuccess : null,
-        onError: context.onError ? context.onError : null
+        onSuccess: context.onSuccess ? function (res) {
+          return context.onSuccess(res, modelName);
+        } : undefined,
+        onError: context.onError ? function (e, res) {
+          return context.onError(e, res, modelName);
+        } : undefined
       }));
     };
   });

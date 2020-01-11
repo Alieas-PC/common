@@ -36,6 +36,11 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
     }
   });
 
+  app.use((ctx, next) => {
+    ctx.models = models;
+    return next();
+  });
+
   sequelize.sync();
 
   logger.info('Sync to db...');

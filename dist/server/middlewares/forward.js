@@ -1,7 +1,7 @@
 const requester = require('../request');
 
 module.exports = (prefix, forwardTo) => {
-  return async ctx => {
+  return async (ctx, next) => {
     if (
       ctx.path.startsWith(`/api/${prefix}/`) ||
       ctx.path === `/api/${prefix}`
@@ -59,5 +59,7 @@ module.exports = (prefix, forwardTo) => {
         ctx.logger.error(`Error occurred, ${e.message}`);
       }
     }
+
+    return next();
   };
 };

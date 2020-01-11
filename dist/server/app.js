@@ -5,24 +5,22 @@ const compress = require('koa-compress');
 const views = require('koa-views');
 const session = require('koa-session');
 const compressible = require('compressible');
-const createLogger = require('./log');
 const mount = require('./middlewares/mount');
 const memcache = require('./middlewares/memcache');
 const forward = require('./middlewares/forward');
-const loadRoutes = require('./routes');
-const { loadModels } = require('./model');
-const { isPrd } = require('./util');
+const loadRoutes = require('./router');
+const loadModels = require('./model');
+const { isPrd } = require('./utils');
+const { getLogger } = require('./log');
+
+const logger = getLogger();
 
 class AppServer {
-  constructor({ keys = ['friday'], assetsDir, projectRoot }) {
+  constructor({ keys = ['friday'], assetsDir }) {
     this.assetsDir = assetsDir;
-    this.projectRoot = projectRoot;
-
     this.app = new Koa();
     this.app.proxy = true;
     this.app.keys = keys;
-
-    this.logger = createLogger(projectRoot);
 
     this.useMiddlewares();
   }
@@ -43,7 +41,7 @@ class AppServer {
       )
       .use(
         // for convenience, mount logger object to ctx.
-        mount({ logger: this.logger })
+        mount({ logger })
       )
       .use(
         // use ejs as default template engine.
@@ -83,7 +81,7 @@ class AppServer {
   }
 
   listen(port = 3000) {
-    this.logger.info(`Server is listening at port ${port}`);
+    logger.info(`Server is listening at port ${port}`);
 
     this.app.listen(port);
   }

@@ -1,7 +1,11 @@
 const Sequelize = require('sequelize');
-const { findModules } = require('../util');
+const { findModules } = require('../utils');
 const createModelRouter = require('./modelRouter');
 const BaseModel = require('./base');
+
+const { getLogger } = require('../log');
+
+const logger = getLogger();
 
 module.exports = (dir, { username, password, database, host, pool }, app) => {
   const sequelize = new Sequelize(database, username, password, {
@@ -20,7 +24,7 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
       model,
       opts: {
         logging: sql => {
-          app.logger.info(sql);
+          logger.info(sql);
         }
       }
     });
@@ -34,5 +38,5 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
 
   sequelize.sync();
 
-  app.logger.info('Sync to db...');
+  logger.info('Sync to db...');
 };

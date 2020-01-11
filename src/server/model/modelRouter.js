@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { uuidv4 } = require('../util');
+const { uuidv4 } = require('../utils');
 const Router = require('koa-router');
 
 const isModelExisted = (modelName, ctx) => {

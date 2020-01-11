@@ -1,9 +1,11 @@
 const log4js = require('log4js');
 const delegate = require('delegates');
 const path = require('path');
-const { isPrd } = require('./util');
+const { isPrd } = require('./utils');
 
-module.exports = projectRoot => {
+let instance = null;
+
+const createLogger = projectRoot => {
   const devConfig = {
     appenders: {
       out: { type: 'stdout', layout: { type: 'coloured' } },
@@ -80,5 +82,18 @@ module.exports = projectRoot => {
 
   delegate(logUtil, 'log4js').method('getLogger');
 
+  instance = logUtil;
+
   return logUtil;
 };
+
+const getLogger = () => {
+  if (instance === null) {
+    throw new Error(
+      'Logger must be created by invoking createLogger method before use.'
+    );
+  }
+  return instance;
+};
+
+module.exports = { createLogger, getLogger };

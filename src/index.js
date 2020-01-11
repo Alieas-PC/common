@@ -1,5 +1,5 @@
 const AppServer = require('./server/app');
 
-const createLogger = require('./server/log');
+const { createLogger, getLogger } = require('./server/log');
 
-module.exports = { AppServer, createLogger };
+module.exports = { AppServer, createLogger, getLogger };

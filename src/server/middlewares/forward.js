@@ -1,8 +1,6 @@
-const createRequester = require('../request');
+const requester = require('../request');
 
-module.exports = (prefix, forwardTo, app) => {
-  const requester = createRequester(app.logger);
-
+module.exports = (prefix, forwardTo) => {
   return async ctx => {
     if (
       ctx.path.startsWith(`/api/${prefix}/`) ||

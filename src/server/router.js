@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 
-const { findModules } = require('./util');
+const { findModules } = require('./utils');
 
 const loadRoutes = (dir, prefix, app) => {
   const router = new Router({ prefix });

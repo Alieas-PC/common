@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
+const { getLogger } = require('../log');
 
-const findModules = (dir, callback, app) => {
+const logger = getLogger();
+
+const findModules = (dir, callback) => {
   /** find routes under the same directory, then load it. */
   fs.readdir(dir, (err, files) => {
     if (err) throw err;
@@ -9,7 +12,7 @@ const findModules = (dir, callback, app) => {
       // skip index.js and hidden files which start with `.`.
       if (file.startsWith('.')) return;
 
-      app.logger.info(`Load a module from [${file}]`);
+      logger.info(`Load a module from [${file}]`);
 
       /* eslint-disable import/no-dynamic-require */
       /* eslint-disable global-require */
@@ -22,7 +25,9 @@ const findModules = (dir, callback, app) => {
   });
 };
 
-const isPrd = !(process.env.NODE_ENV === 'development');
+const isDev = () => process.env.NODE_ENV === 'development';
+
+const isPrd = () => !isDev();
 
 const uuidv4 = () =>
   'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
@@ -32,4 +37,4 @@ const uuidv4 = () =>
   });
 module.exports = { uuidv4 };
 
-module.exports = { findModules, isPrd, uuidv4 };
+module.exports = { findModules, isPrd, isDev, uuidv4 };

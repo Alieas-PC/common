@@ -1,18 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import connect from '../../base';
+import { connect } from 'react-redux';
 import { setCommonState } from '../../action';
 import Toast from '../toast';
 
 class Commons extends PureComponent {
-  static mapState = state => ({
-    toastMsg: state.common.toastMsg
-  });
-
-  static mapDispatch = {
-    setCommonState
-  };
-
   render() {
     const { toastMsg } = this.props;
 
@@ -40,4 +32,11 @@ Commons.defaultProps = {
   toastMsg: null
 };
 
-export default connect(Commons);
+export default connect(
+  state => ({
+    toastMsg: state.common.toastMsg
+  }),
+  {
+    setCommonState
+  }
+)(Commons);

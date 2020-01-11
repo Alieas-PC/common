@@ -19,13 +19,11 @@ var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/ge
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _base = _interopRequireDefault(require("../../base"));
+var _reactRedux = require("react-redux");
 
 var _action = require("../../action");
 
@@ -61,14 +59,6 @@ function (_PureComponent) {
   return Commons;
 }(_react.PureComponent);
 
-(0, _defineProperty2["default"])(Commons, "mapState", function (state) {
-  return {
-    toastMsg: state.common.toastMsg
-  };
-});
-(0, _defineProperty2["default"])(Commons, "mapDispatch", {
-  setCommonState: _action.setCommonState
-});
 Commons.propTypes = {
   setCommonState: _propTypes["default"].func,
   toastMsg: _propTypes["default"].any
@@ -78,7 +68,13 @@ Commons.defaultProps = {
   toastMsg: null
 };
 
-var _default = (0, _base["default"])(Commons);
+var _default = (0, _reactRedux.connect)(function (state) {
+  return {
+    toastMsg: state.common.toastMsg
+  };
+}, {
+  setCommonState: _action.setCommonState
+})(Commons);
 
 exports["default"] = _default;
 module.exports = exports.default;

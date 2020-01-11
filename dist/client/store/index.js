@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.store = exports.createStore = void 0;
+exports.getStore = exports.createStore = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -51,5 +51,9 @@ var createStore = function createStore(rootReducer, rootSaga, preloadedState, hi
 };
 
 exports.createStore = createStore;
-var store = _store;
-exports.store = store;
+
+var getStore = function getStore() {
+  return _store;
+};
+
+exports.getStore = getStore;

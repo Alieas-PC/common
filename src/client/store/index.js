@@ -24,4 +24,4 @@ export const createStore = (rootReducer, rootSaga, preloadedState, history) => {
   return store;
 };
 
-export const store = _store;
+export const getStore = () => _store;

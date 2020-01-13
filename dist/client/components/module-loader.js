@@ -77,7 +77,9 @@ function (_Component) {
         var element = _react["default"].createElement(Module, props);
 
         console.log('setState');
-        this.setState(element);
+        this.setState({
+          element: element
+        });
       }
     }
   }, {

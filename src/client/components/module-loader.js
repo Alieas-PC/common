@@ -23,7 +23,7 @@ class ModuleLoader extends Component {
 
       console.log('setState');
 
-      this.setState(element);
+      this.setState({ element });
     }
   }
 

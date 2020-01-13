@@ -9,31 +9,74 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
-
 var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var ModuleLoader = function ModuleLoader(_ref) {
-  var waitFor = _ref.waitFor,
-      props = (0, _objectWithoutProperties2["default"])(_ref, ["waitFor"]);
+var ModuleLoader =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2["default"])(ModuleLoader, _Component);
 
-  var _useState = (0, _react.useState)(_react["default"].createElement("div", null, "Loading...")),
-      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
-      element = _useState2[0],
-      setElement = _useState2[1];
+  function ModuleLoader() {
+    var _getPrototypeOf2;
 
-  (0, _react.useEffect)(function () {
-    waitFor.then(function (_ref2) {
-      var Component = _ref2["default"];
-      setElement(_react["default"].createElement(Component, props));
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, ModuleLoader);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(ModuleLoader)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
+      element: _react["default"].createElement("div", null, "Loading...")
     });
-  }, []);
-  return element;
-};
+    return _this;
+  }
+
+  (0, _createClass2["default"])(ModuleLoader, [{
+    key: "UNSAFE_componentWillMount",
+    value: function UNSAFE_componentWillMount() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          waitFor = _this$props.waitFor,
+          props = (0, _objectWithoutProperties2["default"])(_this$props, ["waitFor"]);
+      waitFor.then(function (_ref) {
+        var Module = _ref["default"];
+
+        _this2.setState({
+          element: _react["default"].createElement(Module, props)
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var element = this.state.element;
+      return element;
+    }
+  }]);
+  return ModuleLoader;
+}(_react.Component);
 
 ModuleLoader.propTypes = {
   waitFor: _propTypes["default"].any.isRequired

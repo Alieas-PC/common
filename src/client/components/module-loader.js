@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const ModuleLoader = ({ waitFor, ...props }) => {
-  const [element, setElement] = useState(<div>Loading...</div>);
+class ModuleLoader extends Component {
+  state = {
+    element: <div>Loading...</div>
+  };
 
-  useEffect(() => {
-    waitFor.then(({ default: Component }) => {
-      setElement(<Component {...props} />);
+  UNSAFE_componentWillMount() {
+    const { waitFor, ...props } = this.props;
+
+    waitFor.then(({ default: Module }) => {
+      this.setState({
+        element: <Module {...props} />
+      });
     });
-  }, []);
+  }
 
-  return element;
-};
+  render() {
+    const { element } = this.state;
+
+    return element;
+  }
+}
 
 ModuleLoader.propTypes = {
   waitFor: PropTypes.any.isRequired

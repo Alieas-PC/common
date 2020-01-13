@@ -72,15 +72,19 @@ function (_Component) {
           });
         });
       } else {
-        console.log('wait for', waitFor);
         var Module = waitFor;
-        this.setState(_react["default"].createElement(Module, null));
+
+        var element = _react["default"].createElement(Module, props);
+
+        console.log('setState');
+        this.setState(element);
       }
     }
   }, {
     key: "render",
     value: function render() {
       var element = this.state.element;
+      console.log('render');
       return element;
     }
   }]);

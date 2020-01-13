@@ -17,16 +17,20 @@ class ModuleLoader extends Component {
         });
       });
     } else {
-      console.log('wait for', waitFor);
-
       const Module = waitFor;
 
-      this.setState(<Module />);
+      const element = <Module {...props} />;
+
+      console.log('setState');
+
+      this.setState(element);
     }
   }
 
   render() {
     const { element } = this.state;
+
+    console.log('render');
 
     return element;
   }

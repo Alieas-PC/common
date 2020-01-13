@@ -29,6 +29,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _utils = require("../utils");
+
 var ModuleLoader =
 /*#__PURE__*/
 function (_Component) {
@@ -60,13 +62,19 @@ function (_Component) {
       var _this$props = this.props,
           waitFor = _this$props.waitFor,
           props = (0, _objectWithoutProperties2["default"])(_this$props, ["waitFor"]);
-      waitFor.then(function (_ref) {
-        var Module = _ref["default"];
 
-        _this2.setState({
-          element: _react["default"].createElement(Module, props)
+      if ((0, _utils.isClient)()) {
+        waitFor.then(function (_ref) {
+          var Module = _ref["default"];
+
+          _this2.setState({
+            element: _react["default"].createElement(Module, props)
+          });
         });
-      });
+      } else {
+        console.log('wait for', waitFor);
+        this.setState(waitFor);
+      }
     }
   }, {
     key: "render",

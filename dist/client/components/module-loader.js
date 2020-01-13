@@ -73,7 +73,8 @@ function (_Component) {
         });
       } else {
         console.log('wait for', waitFor);
-        this.setState(waitFor);
+        var Module = waitFor;
+        this.setState(_react["default"].createElement(Module, null));
       }
     }
   }, {

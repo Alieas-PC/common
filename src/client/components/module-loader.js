@@ -18,7 +18,10 @@ class ModuleLoader extends Component {
       });
     } else {
       console.log('wait for', waitFor);
-      this.setState(waitFor);
+
+      const Module = waitFor;
+
+      this.setState(<Module />);
     }
   }
 

@@ -81,18 +81,14 @@ const createLogger = projectRoot => {
 
   delegate(logUtil, 'log4js').method('getLogger');
 
-  instance = logUtil;
-
   return logUtil;
 };
 
 const getLogger = () => {
   if (instance === null) {
-    throw new Error(
-      'Logger must be created by invoking createLogger method before use.'
-    );
+    instance = createLogger(process.cwd());
   }
   return instance;
 };
 
-module.exports = { createLogger, getLogger };
+module.exports = { getLogger };

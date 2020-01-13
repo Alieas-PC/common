@@ -57,36 +57,40 @@ function (_Component) {
   (0, _createClass2["default"])(ModuleLoader, [{
     key: "UNSAFE_componentWillMount",
     value: function UNSAFE_componentWillMount() {
-      var _this2 = this;
-
       var _this$props = this.props,
           waitFor = _this$props.waitFor,
           props = (0, _objectWithoutProperties2["default"])(_this$props, ["waitFor"]);
 
-      if ((0, _utils.isClient)()) {
-        waitFor.then(function (_ref) {
-          var Module = _ref["default"];
-
-          _this2.setState({
-            element: _react["default"].createElement(Module, props)
-          });
-        });
-      } else {
+      if (!(0, _utils.isClient)()) {
         var Module = waitFor;
 
         var element = _react["default"].createElement(Module, props);
 
-        console.log('setState');
         this.setState({
           element: element
         });
       }
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var _this$props2 = this.props,
+          waitFor = _this$props2.waitFor,
+          props = (0, _objectWithoutProperties2["default"])(_this$props2, ["waitFor"]);
+      waitFor.then(function (_ref) {
+        var Module = _ref["default"];
+
+        _this2.setState({
+          element: _react["default"].createElement(Module, props)
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var element = this.state.element;
-      console.log('render', element);
       return element;
     }
   }]);

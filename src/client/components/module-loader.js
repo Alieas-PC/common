@@ -10,27 +10,27 @@ class ModuleLoader extends Component {
   UNSAFE_componentWillMount() {
     const { waitFor, ...props } = this.props;
 
-    if (isClient()) {
-      waitFor.then(({ default: Module }) => {
-        this.setState({
-          element: <Module {...props} />
-        });
-      });
-    } else {
+    if (!isClient()) {
       const Module = waitFor;
 
       const element = <Module {...props} />;
-
-      console.log('setState');
 
       this.setState({ element });
     }
   }
 
+  componentDidMount() {
+    const { waitFor, ...props } = this.props;
+
+    waitFor.then(({ default: Module }) => {
+      this.setState({
+        element: <Module {...props} />
+      });
+    });
+  }
+
   render() {
     const { element } = this.state;
-
-    console.log('render', element);
 
     return element;
   }

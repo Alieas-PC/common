@@ -1,5 +1,5 @@
 {
-  "name": "framework-core",
+  "name": "common",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -8,13 +8,12 @@
     "mv:server": "cp -r src/server dist && cp src/index.js dist",
     "build": "npm run clean && npm run compile && npm run mv:server",
     "compile": "babel ./src/client --out-dir ./dist/client",
-    "publish":"npm run build && git add --all && git commit --all -m'update' && git push"
+    "publish": "npm run build && git add --all && git commit --all -m'update' && git push"
   },
   "keywords": [
-    "framework-core",
     "react",
-    "boilerplate",
-    "ssr"
+    "common",
+    "utils"
   ],
   "author": "",
   "license": "ISC",

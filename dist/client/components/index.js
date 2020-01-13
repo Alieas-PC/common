@@ -35,12 +35,6 @@ Object.defineProperty(exports, "EventDelegate", {
     return _eventDelegate["default"];
   }
 });
-Object.defineProperty(exports, "ModuleLoader", {
-  enumerable: true,
-  get: function get() {
-    return _moduleLoader["default"];
-  }
-});
 
 var _commons = _interopRequireDefault(require("./commons"));
 
@@ -51,5 +45,3 @@ var _copyHandler = _interopRequireDefault(require("./copy-handler"));
 var _countdown = _interopRequireDefault(require("./countdown"));
 
 var _eventDelegate = _interopRequireDefault(require("./event-delegate"));
-
-var _moduleLoader = _interopRequireDefault(require("./module-loader"));

@@ -7,5 +7,3 @@ export { default as CopyHanlder } from './copy-handler';
 export { default as Countdown } from './countdown';
 
 export { default as EventDelegate } from './event-delegate';
-
-export { default as ModuleLoader } from './module-loader';

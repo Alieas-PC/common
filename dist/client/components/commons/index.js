@@ -29,6 +29,8 @@ var _action = require("../../action");
 
 var _toast = _interopRequireDefault(require("../toast"));
 
+var _copyHandler = _interopRequireDefault(require("../copy-handler"));
+
 var Commons =
 /*#__PURE__*/
 function (_PureComponent) {
@@ -44,8 +46,10 @@ function (_PureComponent) {
     value: function render() {
       var _this = this;
 
-      var toastMsg = this.props.toastMsg;
-      return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_toast["default"], {
+      var _this$props = this.props,
+          toastMsg = _this$props.toastMsg,
+          includes = _this$props.includes;
+      return _react["default"].createElement(_react["default"].Fragment, null, includes.includes(Commons.Types.Toast) && _react["default"].createElement(_toast["default"], {
         text: toastMsg,
         open: !!toastMsg,
         onClose: function onClose() {
@@ -53,7 +57,7 @@ function (_PureComponent) {
             toastMsg: null
           });
         }
-      }));
+      }), includes.includes(Commons.Types.Copy) && _react["default"].createElement(_copyHandler["default"], null));
     }
   }]);
   return Commons;
@@ -61,11 +65,17 @@ function (_PureComponent) {
 
 Commons.propTypes = {
   setCommonState: _propTypes["default"].func,
-  toastMsg: _propTypes["default"].any
+  toastMsg: _propTypes["default"].any,
+  includes: _propTypes["default"].array
 };
 Commons.defaultProps = {
   setCommonState: function setCommonState() {},
-  toastMsg: null
+  toastMsg: null,
+  includes: []
+};
+Commons.Types = {
+  Toast: 'Toast',
+  Copy: 'Copy'
 };
 
 var _default = (0, _reactRedux.connect)(function (state) {

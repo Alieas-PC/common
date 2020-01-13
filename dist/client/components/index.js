@@ -17,6 +17,12 @@ Object.defineProperty(exports, "Toast", {
     return _toast["default"];
   }
 });
+Object.defineProperty(exports, "CopyHanlder", {
+  enumerable: true,
+  get: function get() {
+    return _copyHandler["default"];
+  }
+});
 Object.defineProperty(exports, "Countdown", {
   enumerable: true,
   get: function get() {
@@ -39,6 +45,8 @@ Object.defineProperty(exports, "ModuleLoader", {
 var _commons = _interopRequireDefault(require("./commons"));
 
 var _toast = _interopRequireDefault(require("./toast"));
+
+var _copyHandler = _interopRequireDefault(require("./copy-handler"));
 
 var _countdown = _interopRequireDefault(require("./countdown"));
 

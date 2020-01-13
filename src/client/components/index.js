@@ -6,4 +6,4 @@ export { default as Countdown } from './countdown';
 
 export { default as EventDelegate } from './event-delegate';
 
-export { default as AsyncComponent } from './async-component';
+export { default as ModuleLoader } from './module-loader';

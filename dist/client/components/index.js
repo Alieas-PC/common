@@ -29,10 +29,10 @@ Object.defineProperty(exports, "EventDelegate", {
     return _eventDelegate["default"];
   }
 });
-Object.defineProperty(exports, "AsyncComponent", {
+Object.defineProperty(exports, "ModuleLoader", {
   enumerable: true,
   get: function get() {
-    return _asyncComponent["default"];
+    return _moduleLoader["default"];
   }
 });
 
@@ -44,4 +44,4 @@ var _countdown = _interopRequireDefault(require("./countdown"));
 
 var _eventDelegate = _interopRequireDefault(require("./event-delegate"));
 
-var _asyncComponent = _interopRequireDefault(require("./async-component"));
+var _moduleLoader = _interopRequireDefault(require("./module-loader"));

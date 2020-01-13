@@ -7,7 +7,8 @@
     "clean": "rm -rf ./dist",
     "mv:server": "cp -r src/server dist && cp src/index.js dist",
     "build": "npm run clean && npm run compile && npm run mv:server",
-    "compile": "babel ./src/client --out-dir ./dist/client"
+    "compile": "babel ./src/client --out-dir ./dist/client",
+    "publish":"npm run build && git commit --all -m'update' && git push"
   },
   "keywords": [
     "framework-core",

@@ -30,7 +30,7 @@ class ModuleLoader extends Component {
   render() {
     const { element } = this.state;
 
-    console.log('render');
+    console.log('render', element);
 
     return element;
   }

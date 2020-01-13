@@ -84,7 +84,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       var element = this.state.element;
-      console.log('render');
+      console.log('render', element);
       return element;
     }
   }]);

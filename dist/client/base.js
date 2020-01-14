@@ -29,6 +29,8 @@ var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/de
 
 var _react = _interopRequireDefault(require("react"));
 
+var _reactHelmet = require("react-helmet");
+
 var _reactRedux = require("react-redux");
 
 var _reactRouterDom = require("react-router-dom");
@@ -59,13 +61,26 @@ var proxyHook = function proxyHook(WrapperComponent, staticProps) {
       (0, _classCallCheck2["default"])(this, BASE_HOC);
       _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(BASE_HOC).call(this, props)); // inject utilities from util/index.js to instances
 
+      (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "i18nListener", null);
       (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "setTitle", function (title) {
         if (utils.isClient()) {
           document.title = title;
         }
       });
-      (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "listenLangChange", function (key) {
-        _this.setTitle(_this.t(key));
+      (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "getTitle", function () {
+        // proxy the cdm function of containers then we can modify dom title
+        var title = staticProps.title,
+            i18nTitleKey = staticProps.i18nTitleKey;
+
+        if (title) {
+          return title;
+        }
+
+        if (i18nTitleKey) {
+          return _this.t(i18nTitleKey);
+        }
+
+        return '';
       });
       _this.$utils = utils; // models access
 
@@ -78,18 +93,16 @@ var proxyHook = function proxyHook(WrapperComponent, staticProps) {
       value: function componentDidMount() {
         var _this2 = this;
 
-        // proxy the cdm function of containers then we can modify dom title
-        var title = staticProps.title,
-            i18nTitleKey = staticProps.i18nTitleKey;
+        var i18nTitleKey = staticProps.i18nTitleKey;
 
         if (i18nTitleKey) {
           this.setTitle(this.t(i18nTitleKey));
 
-          _i18n.i18n.on('languageChanged', function () {
-            return _this2.listenLangChange(i18nTitleKey);
-          });
-        } else if (title) {
-          document.title = title;
+          this.i18nListener = function () {
+            _this2.setTitle(_this2.t(i18nTitleKey));
+          };
+
+          _i18n.i18n.on('languageChanged', this.i18nListener);
         }
 
         if ((0, _get2["default"])((0, _getPrototypeOf2["default"])(BASE_HOC.prototype), "componentDidMount", this)) {
@@ -99,11 +112,23 @@ var proxyHook = function proxyHook(WrapperComponent, staticProps) {
     }, {
       key: "componentWillUnmount",
       value: function componentWillUnmount() {
-        _i18n.i18n.off('languageChanged', this.listenLangChange);
+        _i18n.i18n.off('languageChanged', this.i18nListener);
 
         if ((0, _get2["default"])((0, _getPrototypeOf2["default"])(BASE_HOC.prototype), "componentWillUnmount", this)) {
           (0, _get2["default"])((0, _getPrototypeOf2["default"])(BASE_HOC.prototype), "componentWillUnmount", this).call(this);
         }
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$staticProps$met = this.staticProps.meta,
+            meta = _this$staticProps$met === void 0 ? {} : _this$staticProps$met;
+        return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_reactHelmet.Helmet, null, _react["default"].createElement("title", null, this.getTitle()), Object.keys(meta).keys().map(function (k) {
+          return _react["default"].createElement("meta", {
+            name: k,
+            content: meta[k]
+          });
+        })), (0, _get2["default"])((0, _getPrototypeOf2["default"])(BASE_HOC.prototype), "render", this).call(this));
       }
     }]);
     return BASE_HOC;

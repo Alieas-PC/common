@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { connect as reduxConnect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { reduxForm, formValueSelector } from 'redux-form';
@@ -16,26 +17,40 @@ const proxyHook = (WrapperComponent, staticProps) =>
       this.model = createModelAccess(this);
     }
 
+    i18nListener = null;
+
     setTitle = title => {
       if (utils.isClient()) {
         document.title = title;
       }
     };
 
-    listenLangChange = key => {
-      this.setTitle(this.t(key));
+    getTitle = () => {
+      // proxy the cdm function of containers then we can modify dom title
+      const { title, i18nTitleKey } = staticProps;
+
+      if (title) {
+        return title;
+      }
+
+      if (i18nTitleKey) {
+        return this.t(i18nTitleKey);
+      }
+
+      return '';
     };
 
     componentDidMount() {
-      // proxy the cdm function of containers then we can modify dom title
-      const { title, i18nTitleKey } = staticProps;
+      const { i18nTitleKey } = staticProps;
 
       if (i18nTitleKey) {
         this.setTitle(this.t(i18nTitleKey));
 
-        i18n.on('languageChanged', () => this.listenLangChange(i18nTitleKey));
-      } else if (title) {
-        document.title = title;
+        this.i18nListener = () => {
+          this.setTitle(this.t(i18nTitleKey));
+        };
+
+        i18n.on('languageChanged', this.i18nListener);
       }
 
       if (super.componentDidMount) {
@@ -44,11 +59,29 @@ const proxyHook = (WrapperComponent, staticProps) =>
     }
 
     componentWillUnmount() {
-      i18n.off('languageChanged', this.listenLangChange);
+      i18n.off('languageChanged', this.i18nListener);
 
       if (super.componentWillUnmount) {
         super.componentWillUnmount();
       }
+    }
+
+    render() {
+      const { meta = {} } = this.staticProps;
+
+      return (
+        <React.Fragment>
+          <Helmet>
+            <title>{this.getTitle()}</title>
+            {Object.keys(meta)
+              .keys()
+              .map(k => (
+                <meta name={k} content={meta[k]} />
+              ))}
+          </Helmet>
+          {super.render()}
+        </React.Fragment>
+      );
     }
   };
 

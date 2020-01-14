@@ -67,7 +67,7 @@ const proxyHook = (WrapperComponent, staticProps) =>
     }
 
     render() {
-      const { meta = {} } = this.staticProps;
+      const { meta = {} } = staticProps;
 
       return (
         <React.Fragment>

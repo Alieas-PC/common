@@ -123,7 +123,7 @@ var proxyHook = function proxyHook(WrapperComponent, staticProps) {
       value: function render() {
         var _staticProps$meta = staticProps.meta,
             meta = _staticProps$meta === void 0 ? {} : _staticProps$meta;
-        return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_reactHelmet.Helmet, null, _react["default"].createElement("title", null, this.getTitle()), Object.keys(meta).keys().map(function (k) {
+        return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_reactHelmet.Helmet, null, _react["default"].createElement("title", null, this.getTitle()), Object.keys(meta).map(function (k) {
           return _react["default"].createElement("meta", {
             name: k,
             content: meta[k]

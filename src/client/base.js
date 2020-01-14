@@ -73,11 +73,9 @@ const proxyHook = (WrapperComponent, staticProps) =>
         <React.Fragment>
           <Helmet>
             <title>{this.getTitle()}</title>
-            {Object.keys(meta)
-              .keys()
-              .map(k => (
-                <meta name={k} content={meta[k]} />
-              ))}
+            {Object.keys(meta).map(k => (
+              <meta name={k} content={meta[k]} />
+            ))}
           </Helmet>
           {super.render()}
         </React.Fragment>

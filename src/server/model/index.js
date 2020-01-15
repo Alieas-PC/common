@@ -14,6 +14,14 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
     dialect: 'mysql',
     logging: sql => {
       logger.info(sql);
+    },
+    hooks: {
+      beforeSync: () => {
+        logger.info('Sync to db...');
+      },
+      afterSync: () => {
+        logger.info('DB syncing finished.');
+      }
     }
   });
 
@@ -42,13 +50,6 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
     logging: sql => {
       logger.info(sql);
     },
-    hooks: {
-      beforeSync: () => {
-        logger.info('Sync to db...');
-      },
-      afterSync: () => {
-        logger.info('DB syncing finished.');
-      }
-    }
+    hooks: true
   });
 };

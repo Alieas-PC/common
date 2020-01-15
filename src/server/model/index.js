@@ -38,7 +38,17 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
     return next();
   });
 
-  sequelize.sync();
-
-  logger.info('Sync to db...');
+  sequelize.sync({
+    logging: sql => {
+      logger.info(sql);
+    },
+    hooks: {
+      beforeSync: () => {
+        logger.info('Sync to db...');
+      },
+      afterSync: () => {
+        logger.info('DB syncing finished.');
+      }
+    }
+  });
 };

@@ -12,7 +12,9 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
     host,
     pool,
     dialect: 'mysql',
-    operatorsAliases: false
+    logging: sql => {
+      logger.info(sql);
+    }
   });
 
   const models = {};
@@ -21,12 +23,7 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
     const { name, model, routes } = mod(sequelize);
 
     models[name] = new BaseModel({
-      model,
-      opts: {
-        logging: sql => {
-          logger.info(sql);
-        }
-      }
+      model
     });
 
     if (routes && routes.length) {

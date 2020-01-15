@@ -1,12 +1,5 @@
 class BaseModel {
-  constructor({
-    model,
-    opts = {
-      logging: sql => {
-        console.info(sql);
-      }
-    }
-  }) {
+  constructor({ model, opts = {} }) {
     this.m = model;
     this.opts = opts;
   }

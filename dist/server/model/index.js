@@ -30,7 +30,7 @@ module.exports = (dir, { username, password, database, host, pool }, app) => {
   findModules(dir, mod => {
     const { name, model, routes } = mod(sequelize);
 
-    model.sync({ force: true });
+    model.sync();
 
     models[name] = new BaseModel({
       model

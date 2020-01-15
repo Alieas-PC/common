@@ -8,7 +8,7 @@ export default context => {
   const modelAccess = {};
 
   Object.keys(modelActions).forEach(k => {
-    modelAccess[k] = (modelName, values) => {
+    modelAccess[k] = (modelName, values, opts) => {
       store.dispatch(
         modelActions[k](modelName, values, {
           onSuccess: res => {
@@ -25,7 +25,8 @@ export default context => {
             if (typeof callbackFn === 'function') {
               context[callbackFn](e, res, modelName);
             }
-          }
+          },
+          ...opts
         })
       );
     };

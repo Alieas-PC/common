@@ -72,7 +72,10 @@ function callService(service, args, actionTypes) {
           _context.next = 19;
           return (0, _effects.put)({
             type: actionTypes.FAILURE,
-            payload: resData
+            payload: {
+              e: _context.t1,
+              res: resData
+            }
           });
 
         case 19:

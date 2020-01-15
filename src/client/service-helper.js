@@ -21,7 +21,7 @@ function* callService(service, args, actionTypes, opts = {}) {
   } catch (e) {
     yield put({
       type: actionTypes.FAILURE,
-      payload: resData
+      payload: { e, res: resData }
     });
 
     yield* onError(e, resData);

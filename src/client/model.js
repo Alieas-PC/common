@@ -18,11 +18,10 @@ export default context => {
               context[callbackFn](res, modelName);
             }
           },
-
           onError: (e, res) => {
             const callbackFn = `${k}Error`;
 
-            if (typeof callbackFn === 'function') {
+            if (typeof context[callbackFn] === 'function') {
               context[callbackFn](e, res, modelName);
             }
           },

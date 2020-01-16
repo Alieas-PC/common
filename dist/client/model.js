@@ -33,7 +33,7 @@ var _default = function _default(context) {
         onError: function onError(e, res) {
           var callbackFn = "".concat(k, "Error");
 
-          if (typeof callbackFn === 'function') {
+          if (typeof context[callbackFn] === 'function') {
             context[callbackFn](e, res, modelName);
           }
         }

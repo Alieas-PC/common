@@ -27,15 +27,19 @@ var _default = function _default(context) {
           var callbackFn = "".concat(k, "Success");
 
           if (typeof context[callbackFn] === 'function') {
-            context[callbackFn](res, modelName);
+            return context[callbackFn](res, modelName);
           }
+
+          return null;
         },
         onError: function onError(e, res) {
           var callbackFn = "".concat(k, "Error");
 
           if (typeof context[callbackFn] === 'function') {
-            context[callbackFn](e, res, modelName);
+            return context[callbackFn](e, res, modelName);
           }
+
+          return null;
         }
       }, opts)));
     };

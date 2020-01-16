@@ -15,15 +15,19 @@ export default context => {
             const callbackFn = `${k}Success`;
 
             if (typeof context[callbackFn] === 'function') {
-              context[callbackFn](res, modelName);
+              return context[callbackFn](res, modelName);
             }
+
+            return null;
           },
           onError: (e, res) => {
             const callbackFn = `${k}Error`;
 
             if (typeof context[callbackFn] === 'function') {
-              context[callbackFn](e, res, modelName);
+              return context[callbackFn](e, res, modelName);
             }
+
+            return null;
           },
           ...opts
         })

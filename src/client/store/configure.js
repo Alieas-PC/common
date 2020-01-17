@@ -37,7 +37,7 @@ export default (rootReducer, rootSaga, preloadedState, history) => {
   );
 
   // return saga task promise
-  store.asyncTask = sagaMiddleware.run(rootSaga).done;
+  store.asyncTask = sagaMiddleware.run(rootSaga).toPromise();
 
   return store;
 };

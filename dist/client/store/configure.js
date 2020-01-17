@@ -37,7 +37,7 @@ var _default = function _default(rootReducer, rootSaga, preloadedState, history)
   var routeMiddleware = (0, _connectedReactRouter.routerMiddleware)(history);
   var store = (0, _redux.createStore)(rootReducer, preloadedState, !isPrd ? composeEnhancers((0, _redux.applyMiddleware)(logger, sagaMiddleware, routeMiddleware)) : (0, _redux.compose)((0, _redux.applyMiddleware)(sagaMiddleware, routeMiddleware))); // return saga task promise
 
-  store.asyncTask = sagaMiddleware.run(rootSaga).done;
+  store.asyncTask = sagaMiddleware.run(rootSaga).toPromise();
   return store;
 };
 

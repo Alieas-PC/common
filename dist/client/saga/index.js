@@ -75,65 +75,70 @@ function scrollPage(_ref2) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _ref2$payload = _ref2.payload, page = _ref2$payload.page, get = _ref2$payload.get, set = _ref2$payload.set, reset = _ref2$payload.reset;
+          console.log('scroll page - get state');
 
           if (!reset) {
-            _context2.next = 5;
+            _context2.next = 6;
             break;
           }
 
           _context2.t0 = null;
-          _context2.next = 8;
+          _context2.next = 9;
           break;
 
-        case 5:
-          _context2.next = 7;
+        case 6:
+          _context2.next = 8;
           return (0, _effects.select)(get);
 
-        case 7:
+        case 8:
           _context2.t0 = _context2.sent;
 
-        case 8:
+        case 9:
           prevPage = _context2.t0;
           rows = page.rows, count = page.count;
 
           if (!prevPage) {
-            _context2.next = 18;
+            _context2.next = 21;
             break;
           }
 
           allRows = prevPage.rows.concat(rows);
+          console.log('scroll page - before set');
           setAction = set({
             rows: allRows,
             count: count
           });
+          console.log('scroll page - set state', setAction);
 
           if (!setAction) {
-            _context2.next = 16;
+            _context2.next = 19;
             break;
           }
 
-          _context2.next = 16;
+          _context2.next = 19;
           return (0, _effects.put)(setAction);
 
-        case 16:
-          _context2.next = 22;
+        case 19:
+          _context2.next = 27;
           break;
 
-        case 18:
+        case 21:
+          console.log('scroll page - before set');
           _setAction = set({
             rows: rows,
             count: count
           });
+          console.log('scroll page - set state', _setAction);
 
           if (!_setAction) {
-            _context2.next = 22;
+            _context2.next = 27;
             break;
           }
 
-          _context2.next = 22;
+          _context2.next = 27;
           return (0, _effects.put)(_setAction);
 
-        case 22:
+        case 27:
         case "end":
           return _context2.stop();
       }

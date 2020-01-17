@@ -27,7 +27,7 @@ function* navTo({ payload: { path, useReplace, option } }) {
   scrollTop(0);
 }
 
-function* scrollPage({ payload: { page, get, set, reset } }) {
+export function* scrollPage({ page, get, set, reset }) {
   const prevPage = reset ? null : yield select(get);
 
   const { rows, count } = page;
@@ -59,7 +59,6 @@ export default function*() {
     takeEvery(action.MODEL_FIND_BY_ID.REQUEST, findById),
     takeEvery(action.MODEL_FIND_LIST.REQUEST, findList),
     takeEvery(action.MODEL_FIND_ONE.REQUEST, findOne),
-    takeEvery(action.MODEL_FIND_PAGE.REQUEST, findPage),
-    takeLatest(action.SCROLL_PAGE, scrollPage)
+    takeEvery(action.MODEL_FIND_PAGE.REQUEST, findPage)
   ]);
 }

@@ -7,6 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.scrollPage = scrollPage;
 exports["default"] = _callee;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
@@ -68,13 +69,13 @@ function navTo(_ref) {
 }
 
 function scrollPage(_ref2) {
-  var _ref2$payload, page, get, set, reset, prevPage, rows, count, allRows, setAction, _setAction;
+  var page, get, set, reset, prevPage, rows, count, allRows, setAction, _setAction;
 
   return _regenerator["default"].wrap(function scrollPage$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _ref2$payload = _ref2.payload, page = _ref2$payload.page, get = _ref2$payload.get, set = _ref2$payload.set, reset = _ref2$payload.reset;
+          page = _ref2.page, get = _ref2.get, set = _ref2.set, reset = _ref2.reset;
 
           if (!reset) {
             _context2.next = 5;
@@ -148,7 +149,7 @@ function _callee() {
         case 0:
           _context3.next = 2;
           return (0, _effects.all)([(0, _effects.takeLatest)(action.NAV_TO, navTo), // model crud
-          (0, _effects.takeEvery)(action.MODEL_CREATE.REQUEST, _model.create), (0, _effects.takeEvery)(action.MODEL_UPDATE.REQUEST, _model.update), (0, _effects.takeEvery)(action.MODEL_DESTROY.REQUEST, _model.destroy), (0, _effects.takeEvery)(action.MODEL_FIND_BY_ID.REQUEST, _model.findById), (0, _effects.takeEvery)(action.MODEL_FIND_LIST.REQUEST, _model.findList), (0, _effects.takeEvery)(action.MODEL_FIND_ONE.REQUEST, _model.findOne), (0, _effects.takeEvery)(action.MODEL_FIND_PAGE.REQUEST, _model.findPage), (0, _effects.takeLatest)(action.SCROLL_PAGE, scrollPage)]);
+          (0, _effects.takeEvery)(action.MODEL_CREATE.REQUEST, _model.create), (0, _effects.takeEvery)(action.MODEL_UPDATE.REQUEST, _model.update), (0, _effects.takeEvery)(action.MODEL_DESTROY.REQUEST, _model.destroy), (0, _effects.takeEvery)(action.MODEL_FIND_BY_ID.REQUEST, _model.findById), (0, _effects.takeEvery)(action.MODEL_FIND_LIST.REQUEST, _model.findList), (0, _effects.takeEvery)(action.MODEL_FIND_ONE.REQUEST, _model.findOne), (0, _effects.takeEvery)(action.MODEL_FIND_PAGE.REQUEST, _model.findPage)]);
 
         case 2:
         case "end":
@@ -157,5 +158,3 @@ function _callee() {
     }
   }, _marked3);
 }
-
-module.exports = exports.default;

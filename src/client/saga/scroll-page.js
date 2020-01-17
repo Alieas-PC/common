@@ -1,4 +1,4 @@
-import { put, select } from 'redux-saga/effects';
+import { put, select, call } from 'redux-saga/effects';
 
 function* scrollPage({ page, get, set, reset }) {
   console.log('scroll page - get state');

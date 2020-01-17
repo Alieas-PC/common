@@ -1,6 +1,6 @@
 import { put, select } from 'redux-saga/effects';
 
-function* scrollPage({ payload: { page, get, set, reset } }) {
+function* scrollPage({ page, get, set, reset }) {
   console.log('scroll page - get state');
 
   const prevPage = reset ? null : yield select(get);

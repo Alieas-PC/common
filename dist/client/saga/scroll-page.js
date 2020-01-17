@@ -16,13 +16,13 @@ var _marked =
 _regenerator["default"].mark(scrollPage);
 
 function scrollPage(_ref) {
-  var _ref$payload, page, get, set, reset, prevPage, rows, count, allRows, setAction, _setAction;
+  var page, get, set, reset, prevPage, rows, count, allRows, setAction, _setAction;
 
   return _regenerator["default"].wrap(function scrollPage$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _ref$payload = _ref.payload, page = _ref$payload.page, get = _ref$payload.get, set = _ref$payload.set, reset = _ref$payload.reset;
+          page = _ref.page, get = _ref.get, set = _ref.set, reset = _ref.reset;
           console.log('scroll page - get state');
 
           if (!reset) {

@@ -27,7 +27,7 @@ function* navTo({ payload: { path, useReplace, option } }) {
   scrollTop(0);
 }
 
-export function* scrollPage({ page, get, set, reset }) {
+export function* scrollPage({ payload: { page, get, set, reset } }) {
   const prevPage = reset ? null : yield select(get);
 
   const { rows, count } = page;

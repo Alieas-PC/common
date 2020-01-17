@@ -69,13 +69,13 @@ function navTo(_ref) {
 }
 
 function scrollPage(_ref2) {
-  var page, get, set, reset, prevPage, rows, count, allRows, setAction, _setAction;
+  var _ref2$payload, page, get, set, reset, prevPage, rows, count, allRows, setAction, _setAction;
 
   return _regenerator["default"].wrap(function scrollPage$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          page = _ref2.page, get = _ref2.get, set = _ref2.set, reset = _ref2.reset;
+          _ref2$payload = _ref2.payload, page = _ref2$payload.page, get = _ref2$payload.get, set = _ref2$payload.set, reset = _ref2$payload.reset;
 
           if (!reset) {
             _context2.next = 5;

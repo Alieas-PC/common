@@ -105,7 +105,8 @@ function scrollPage(_ref2) {
           allRows = prevPage.rows.concat(rows);
           setAction = set({
             rows: allRows,
-            count: count
+            count: count,
+            hasMore: allRows.length < count
           });
 
           if (!setAction) {
@@ -123,7 +124,8 @@ function scrollPage(_ref2) {
         case 18:
           _setAction = set({
             rows: rows,
-            count: count
+            count: count,
+            hasMore: rows.length < count
           });
 
           if (!_setAction) {

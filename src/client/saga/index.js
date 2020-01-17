@@ -35,13 +35,17 @@ export function* scrollPage({ page, get, set, reset }) {
   if (prevPage) {
     const allRows = prevPage.rows.concat(rows);
 
-    const setAction = set({ rows: allRows, count });
+    const setAction = set({
+      rows: allRows,
+      count,
+      hasMore: allRows.length < count
+    });
 
     if (setAction) {
       yield put(setAction);
     }
   } else {
-    const setAction = set({ rows, count });
+    const setAction = set({ rows, count, hasMore: rows.length < count });
 
     if (setAction) {
       yield put(setAction);

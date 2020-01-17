@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { takeLatest, all, put, takeEvery, select } from 'redux-saga/effects';
+import { takeLatest, all, put, takeEvery } from 'redux-saga/effects';
 
 import { push, replace } from 'connected-react-router';
 
@@ -27,38 +27,6 @@ function* navTo({ payload: { path, useReplace, option } }) {
   scrollTop(0);
 }
 
-function* scrollPage({ payload: { page, get, set, reset } }) {
-  console.log('scroll page - get state');
-
-  const prevPage = reset ? null : yield select(get);
-
-  const { rows, count } = page;
-
-  if (prevPage) {
-    const allRows = prevPage.rows.concat(rows);
-
-    console.log('scroll page - before set');
-
-    const setAction = set({ rows: allRows, count });
-
-    console.log('scroll page - set state', setAction);
-
-    if (setAction) {
-      yield put(setAction);
-    }
-  } else {
-    console.log('scroll page - before set');
-
-    const setAction = set({ rows, count });
-
-    console.log('scroll page - set state', setAction);
-
-    if (setAction) {
-      yield put(setAction);
-    }
-  }
-}
-
 export default function*() {
   yield all([
     takeLatest(action.NAV_TO, navTo),
@@ -69,7 +37,6 @@ export default function*() {
     takeEvery(action.MODEL_FIND_BY_ID.REQUEST, findById),
     takeEvery(action.MODEL_FIND_LIST.REQUEST, findList),
     takeEvery(action.MODEL_FIND_ONE.REQUEST, findOne),
-    takeEvery(action.MODEL_FIND_PAGE.REQUEST, findPage),
-    takeLatest(action.SCROLL_PAGE, scrollPage)
+    takeEvery(action.MODEL_FIND_PAGE.REQUEST, findPage)
   ]);
 }

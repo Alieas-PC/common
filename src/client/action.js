@@ -32,6 +32,8 @@ export const MODEL_FIND_BY_ID = createRequestTypes(
 
 export const MODEL_FIND_LIST = createRequestTypes(`${PREFIX}_MODEL_FIND_LIST`);
 
+export const SCROLL_PAGE = `${PREFIX}_SCROLL_PAGE`;
+
 /** Actions */
 
 export const navTo = makeActionCreator(NAV_TO);
@@ -74,3 +76,5 @@ export const modelActions = {
   findById: modelActionCreator(MODEL_FIND_BY_ID),
   findList: modelActionCreator(MODEL_FIND_LIST)
 };
+
+export const scrollPage = makeActionCreator(SCROLL_PAGE);

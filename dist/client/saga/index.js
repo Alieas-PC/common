@@ -151,7 +151,7 @@ function _callee() {
         case 0:
           _context3.next = 2;
           return (0, _effects.all)([(0, _effects.takeLatest)(action.NAV_TO, navTo), // model crud
-          (0, _effects.takeEvery)(action.MODEL_CREATE.REQUEST, _model.create), (0, _effects.takeEvery)(action.MODEL_UPDATE.REQUEST, _model.update), (0, _effects.takeEvery)(action.MODEL_DESTROY.REQUEST, _model.destroy), (0, _effects.takeEvery)(action.MODEL_FIND_BY_ID.REQUEST, _model.findById), (0, _effects.takeEvery)(action.MODEL_FIND_LIST.REQUEST, _model.findList), (0, _effects.takeEvery)(action.MODEL_FIND_ONE.REQUEST, _model.findOne), (0, _effects.takeEvery)(action.MODEL_FIND_PAGE.REQUEST, _model.findPage)]);
+          (0, _effects.takeEvery)(action.MODEL_CREATE.REQUEST, _model.create), (0, _effects.takeEvery)(action.MODEL_UPDATE.REQUEST, _model.update), (0, _effects.takeEvery)(action.MODEL_DESTROY.REQUEST, _model.destroy), (0, _effects.takeEvery)(action.MODEL_FIND_BY_ID.REQUEST, _model.findById), (0, _effects.takeEvery)(action.MODEL_FIND_LIST.REQUEST, _model.findList), (0, _effects.takeEvery)(action.MODEL_FIND_ONE.REQUEST, _model.findOne), (0, _effects.takeEvery)(action.MODEL_FIND_PAGE.REQUEST, _model.findPage), (0, _effects.takeLatest)(action.SCROLL_PAGE, scrollPage)]);
 
         case 2:
         case "end":

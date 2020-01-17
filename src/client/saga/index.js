@@ -63,6 +63,7 @@ export default function*() {
     takeEvery(action.MODEL_FIND_BY_ID.REQUEST, findById),
     takeEvery(action.MODEL_FIND_LIST.REQUEST, findList),
     takeEvery(action.MODEL_FIND_ONE.REQUEST, findOne),
-    takeEvery(action.MODEL_FIND_PAGE.REQUEST, findPage)
+    takeEvery(action.MODEL_FIND_PAGE.REQUEST, findPage),
+    takeLatest(action.SCROLL_PAGE, scrollPage)
   ]);
 }

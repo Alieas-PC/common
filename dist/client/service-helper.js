@@ -11,7 +11,7 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _effects = require("redux-saga/effects");
 
-var _action2 = require("./action");
+var _action = require("./action");
 
 var _marked =
 /*#__PURE__*/
@@ -25,8 +25,6 @@ function callService(service, args, actionTypes) {
       onError,
       loadingKey,
       resData,
-      action,
-      _action,
       _args = arguments;
 
   return _regenerator["default"].wrap(function callService$(_context) {
@@ -43,7 +41,7 @@ function callService(service, args, actionTypes) {
           }
 
           _context.next = 6;
-          return (0, _effects.put)((0, _action2.setLoadingState)({
+          return (0, _effects.put)((0, _action.setLoadingState)({
             loading: true,
             key: loadingKey
           }));
@@ -58,32 +56,20 @@ function callService(service, args, actionTypes) {
           return _context.delegateYield(onSuccess(resData), "t0", 11);
 
         case 11:
-          action = _context.t0;
-          _context.next = 14;
+          _context.next = 13;
           return (0, _effects.put)({
             type: actionTypes.SUCCESS,
             payload: resData
           });
 
-        case 14:
-          console.log('returned action', action);
-
-          if (!action) {
-            _context.next = 18;
-            break;
-          }
-
-          _context.next = 18;
-          return (0, _effects.put)(action);
-
-        case 18:
-          _context.next = 30;
+        case 13:
+          _context.next = 20;
           break;
 
-        case 20:
-          _context.prev = 20;
+        case 15:
+          _context.prev = 15;
           _context.t1 = _context["catch"](6);
-          _context.next = 24;
+          _context.next = 19;
           return (0, _effects.put)({
             type: actionTypes.FAILURE,
             payload: {
@@ -92,44 +78,32 @@ function callService(service, args, actionTypes) {
             }
           });
 
-        case 24:
-          return _context.delegateYield(onError(_context.t1, resData), "t2", 25);
+        case 19:
+          return _context.delegateYield(onError(_context.t1, resData), "t2", 20);
 
-        case 25:
-          _action = _context.t2;
-          console.log('returned action', _action);
-
-          if (!_action) {
-            _context.next = 30;
-            break;
-          }
-
-          _context.next = 30;
-          return (0, _effects.put)(_action);
-
-        case 30:
-          _context.prev = 30;
+        case 20:
+          _context.prev = 20;
 
           if (!loadingKey) {
-            _context.next = 34;
+            _context.next = 24;
             break;
           }
 
-          _context.next = 34;
-          return (0, _effects.put)((0, _action2.setLoadingState)({
+          _context.next = 24;
+          return (0, _effects.put)((0, _action.setLoadingState)({
             loading: false,
             key: loadingKey
           }));
 
-        case 34:
-          return _context.finish(30);
+        case 24:
+          return _context.finish(20);
 
-        case 35:
+        case 25:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[6, 20, 30, 35]]);
+  }, _marked, null, [[6, 15, 20, 25]]);
 }
 
 var _default = callService;

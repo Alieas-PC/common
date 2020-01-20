@@ -56,10 +56,10 @@ module.exports = (modelName, includeApi) => {
   if (!includeApi || includeApi.includes('find-page'))
     router.post('/find-page', async ctx => {
       if (isModelExisted(modelName, ctx)) {
-        const { params, limit = 10, offset = 0, order } = ctx.request.body;
+        const { where, limit = 10, offset = 0, order } = ctx.request.body;
 
         const data = await ctx.models[modelName].findPage({
-          where: parseOperators(params),
+          where: parseOperators(where),
           limit,
           offset,
           order
@@ -72,10 +72,10 @@ module.exports = (modelName, includeApi) => {
   if (!includeApi || includeApi.includes('find-one')) {
     router.post('/find-one', async ctx => {
       if (isModelExisted(modelName, ctx)) {
-        const params = ctx.request.body;
+        const where = ctx.request.body;
 
         const model = await ctx.models[modelName].findOne({
-          where: parseOperators(params)
+          where: parseOperators(where)
         });
 
         ctx.body = model;
@@ -98,10 +98,10 @@ module.exports = (modelName, includeApi) => {
   if (!includeApi || includeApi.includes('find-list')) {
     router.post('/find-list', async ctx => {
       if (isModelExisted(modelName, ctx)) {
-        const { params, order } = ctx.request.body;
+        const { where, order } = ctx.request.body;
 
         const data = await ctx.models[modelName].findList({
-          where: parseOperators(params),
+          where: parseOperators(where),
           order
         });
 
@@ -113,10 +113,10 @@ module.exports = (modelName, includeApi) => {
   if (!includeApi || includeApi.includes('destroy')) {
     router.post('/destroy', async ctx => {
       if (isModelExisted(modelName, ctx)) {
-        const params = ctx.request.body;
+        const where = ctx.request.body;
 
         const num = await ctx.models[modelName].destroy({
-          where: parseOperators(params)
+          where: parseOperators(where)
         });
 
         ctx.body = num;
@@ -127,10 +127,10 @@ module.exports = (modelName, includeApi) => {
   if (!includeApi || includeApi.includes('update')) {
     router.post('/update', async ctx => {
       if (isModelExisted(modelName, ctx)) {
-        const { params, values, fields } = ctx.request.body;
+        const { where, values, fields } = ctx.request.body;
 
         const data = await ctx.models[modelName].update(values, {
-          where: parseOperators(params),
+          where: parseOperators(where),
           fields
         });
 
@@ -142,10 +142,10 @@ module.exports = (modelName, includeApi) => {
   if (!includeApi || includeApi.includes('count')) {
     router.post('/count', async ctx => {
       if (isModelExisted(modelName, ctx)) {
-        const params = ctx.request.body;
+        const where = ctx.request.body;
 
         const data = await ctx.models[modelName].count({
-          where: parseOperators(params)
+          where: parseOperators(where)
         });
 
         ctx.body = data;

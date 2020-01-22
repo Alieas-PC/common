@@ -59,7 +59,7 @@ class AppServer {
         // use koa session
         session(this.app)
       )
-      .use(memcache(this));
+      .use(memcache());
   }
 
   useRoutes(routesDir, prefix = '/api') {

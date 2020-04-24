@@ -84,7 +84,9 @@ var proxyHook = function proxyHook(WrapperComponent, staticProps) {
       });
       _this.$utils = utils; // models access
 
-      _this.model = (0, _model["default"])((0, _assertThisInitialized2["default"])(_this));
+      _this.model = (0, _model["default"])((0, _assertThisInitialized2["default"])(_this)); // for convenience
+
+      _this.t = _this.props.t;
       return _this;
     }
 

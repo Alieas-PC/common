@@ -15,6 +15,8 @@ const proxyHook = (WrapperComponent, staticProps) =>
       this.$utils = utils;
       // models access
       this.model = createModelAccess(this);
+      // for convenience
+      this.t = this.props.t;
     }
 
     i18nListener = null;

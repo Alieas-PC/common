@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.scrollPage = exports.modelActions = exports.modelActionCreator = exports.moduleStateActionCreator = exports.setLoadingState = exports.setCommonState = exports.initApp = exports.showToast = exports.redirectTo = exports.navTo = exports.SCROLL_PAGE = exports.MODEL_FIND_LIST = exports.MODEL_FIND_BY_ID = exports.MODEL_FIND_ONE = exports.MODEL_FIND_PAGE = exports.MODEL_UPDATE = exports.MODEL_DESTROY = exports.MODEL_CREATE = exports.SET_LOADING_STATE = exports.SET_COMMON_STATE = exports.INIT_APP = exports.SHOW_TOAST = exports.REDIRECT_TO = exports.NAV_TO = exports.PREFIX = void 0;
+exports.changeLang = exports.scrollPage = exports.modelActions = exports.modelActionCreator = exports.moduleStateActionCreator = exports.setLoadingState = exports.setCommonState = exports.initApp = exports.showToast = exports.redirectTo = exports.navTo = exports.CHANGE_LANG = exports.SCROLL_PAGE = exports.MODEL_FIND_LIST = exports.MODEL_FIND_BY_ID = exports.MODEL_FIND_ONE = exports.MODEL_FIND_PAGE = exports.MODEL_UPDATE = exports.MODEL_DESTROY = exports.MODEL_CREATE = exports.SET_LOADING_STATE = exports.SET_COMMON_STATE = exports.INIT_APP = exports.SHOW_TOAST = exports.REDIRECT_TO = exports.NAV_TO = exports.PREFIX = void 0;
 
 var _reduxUtil = require("./utils/reduxUtil");
 
@@ -38,9 +38,11 @@ exports.MODEL_FIND_BY_ID = MODEL_FIND_BY_ID;
 var MODEL_FIND_LIST = (0, _reduxUtil.createRequestTypes)("".concat(PREFIX, "_MODEL_FIND_LIST"));
 exports.MODEL_FIND_LIST = MODEL_FIND_LIST;
 var SCROLL_PAGE = "".concat(PREFIX, "_SCROLL_PAGE");
+exports.SCROLL_PAGE = SCROLL_PAGE;
+var CHANGE_LANG = "".concat(PREFIX, "_CHANGE_LANG");
 /** Actions */
 
-exports.SCROLL_PAGE = SCROLL_PAGE;
+exports.CHANGE_LANG = CHANGE_LANG;
 var navTo = (0, _reduxUtil.makeActionCreator)(NAV_TO);
 exports.navTo = navTo;
 var redirectTo = (0, _reduxUtil.makeActionCreator)(REDIRECT_TO);
@@ -93,3 +95,5 @@ var modelActions = {
 exports.modelActions = modelActions;
 var scrollPage = (0, _reduxUtil.makeActionCreator)(SCROLL_PAGE);
 exports.scrollPage = scrollPage;
+var changeLang = (0, _reduxUtil.makeActionCreator)(CHANGE_LANG);
+exports.changeLang = changeLang;

@@ -34,6 +34,8 @@ export const MODEL_FIND_LIST = createRequestTypes(`${PREFIX}_MODEL_FIND_LIST`);
 
 export const SCROLL_PAGE = `${PREFIX}_SCROLL_PAGE`;
 
+export const CHANGE_LANG = `${PREFIX}_CHANGE_LANG`;
+
 /** Actions */
 
 export const navTo = makeActionCreator(NAV_TO);
@@ -78,3 +80,5 @@ export const modelActions = {
 };
 
 export const scrollPage = makeActionCreator(SCROLL_PAGE);
+
+export const changeLang = makeActionCreator(CHANGE_LANG);

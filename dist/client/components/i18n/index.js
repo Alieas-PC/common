@@ -29,6 +29,7 @@ Object.defineProperty(exports, "I18nextProvider", {
     return _reactI18next.I18nextProvider;
   }
 });
+exports.initI18n = void 0;
 
 var _i18next = _interopRequireDefault(require("i18next"));
 
@@ -36,15 +37,23 @@ var _reactI18next = require("react-i18next");
 
 var _i18nextBrowserLanguagedetector = _interopRequireDefault(require("i18next-browser-languagedetector"));
 
-var _enUs = _interopRequireDefault(require("./en-us"));
+var initI18n = function initI18n(supportedLanguages, opts) {
+  opts = opts || {
+    autoDetect: false,
+    fallback: 'en-US'
+  };
 
-var _zhCn = _interopRequireDefault(require("./zh-cn"));
+  var instance = _i18next["default"].use(_reactI18next.initReactI18next);
 
-_i18next["default"].use(_reactI18next.initReactI18next).use(_i18nextBrowserLanguagedetector["default"]).init({
-  debug: false,
-  resources: {
-    'en-US': _enUs["default"],
-    'zh-CN': _zhCn["default"]
-  },
-  fallbackLng: 'en-US'
-});
+  if (opts.autoDetect) {
+    instance.use(_i18nextBrowserLanguagedetector["default"]);
+  }
+
+  instance.init({
+    debug: false,
+    resources: supportedLanguages,
+    fallbackLng: opts.fallback || 'en-US'
+  });
+};
+
+exports.initI18n = initI18n;

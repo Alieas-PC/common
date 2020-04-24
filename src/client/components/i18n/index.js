@@ -7,19 +7,20 @@ import {
 } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import enUS from './en-us';
-import zhCN from './zh-cn';
+const initI18n = (supportedLanguages, opts) => {
+  opts = opts || { autoDetect: false, fallback: 'en-US' };
 
-i18n
-  .use(initReactI18next)
-  .use(LanguageDetector)
-  .init({
+  const instance = i18n.use(initReactI18next);
+
+  if (opts.autoDetect) {
+    instance.use(LanguageDetector);
+  }
+
+  instance.init({
     debug: false,
-    resources: {
-      'en-US': enUS,
-      'zh-CN': zhCN
-    },
-    fallbackLng: 'en-US'
+    resources: supportedLanguages,
+    fallbackLng: opts.fallback || 'en-US'
   });
+};
 
-export { i18n, useTranslation, withTranslation, I18nextProvider };
+export { i18n, useTranslation, withTranslation, I18nextProvider, initI18n };

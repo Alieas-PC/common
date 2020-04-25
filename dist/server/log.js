@@ -85,7 +85,9 @@ const createLogger = (projectRoot, pm2) => {
   return logUtil;
 };
 
-const getLogger = ({ pm2 }) => {
+const getLogger = opts => {
+  const { pm2 } = opts || {};
+
   if (instance === null) {
     instance = createLogger(process.cwd(), pm2);
   }

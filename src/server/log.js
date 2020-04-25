@@ -4,7 +4,7 @@ const path = require('path');
 
 let instance = null;
 
-const createLogger = projectRoot => {
+const createLogger = (projectRoot, pm2) => {
   const devConfig = {
     appenders: {
       out: { type: 'stdout', layout: { type: 'coloured' } },
@@ -25,6 +25,7 @@ const createLogger = projectRoot => {
   };
 
   const prdConfig = {
+    pm2,
     appenders: {
       defaultLogFile: {
         type: 'file',
@@ -84,9 +85,9 @@ const createLogger = projectRoot => {
   return logUtil;
 };
 
-const getLogger = () => {
+const getLogger = ({ pm2 }) => {
   if (instance === null) {
-    instance = createLogger(process.cwd());
+    instance = createLogger(process.cwd(), pm2);
   }
   return instance;
 };
